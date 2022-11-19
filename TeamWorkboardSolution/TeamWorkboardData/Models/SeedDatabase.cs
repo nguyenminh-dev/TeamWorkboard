@@ -24,8 +24,7 @@ namespace TeamWorkboardData.Models
                 {
                     UserName = "Admin",
                     PhoneNumber = "88888888",
-                    SecurityStamp = Guid.NewGuid().ToString(),
-                    Password = "Admin@123",
+                    SecurityStamp = Guid.NewGuid().ToString()
                 };
                 userManager.CreateAsync(user, "Admin@123");
             }

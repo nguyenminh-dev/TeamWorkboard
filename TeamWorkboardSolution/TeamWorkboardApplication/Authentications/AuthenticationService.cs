@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
@@ -53,7 +55,24 @@ namespace TeamWorkboardApplication.Authentications
                 var token = new JwtSecurityTokenHandler().WriteToken(jwtSecurityToken);
                 return token;
             }
-            return null;
+            throw new Exception("Account does not exist!!!");
+        }
+
+        public async Task<IdentityResult> SignUpAsync(SignUpDto model)
+        {
+            var userExist = await _userManager.FindByNameAsync(model.UserName);
+            if (userExist != null)
+            {
+                throw new Exception("Account already exist!!!");
+            }
+            var user = new AppUser()
+            {
+                PhoneNumber = model.PhoneNumber,
+                SecurityStamp = Guid.NewGuid().ToString(),
+                UserName = model.UserName
+            };
+            var result = await _userManager.CreateAsync(user, model.Password);
+            return result;
         }
     }
 }
