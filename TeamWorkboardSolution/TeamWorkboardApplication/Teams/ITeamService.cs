@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TeamWorkboardApplication.Users
+namespace TeamWorkboardApplication.Teams
 {
-    internal class UserService
+    public interface ITeamService
     {
+        Task<TeamDto> CreateAsync(TeamCreateDto input);
     }
 }

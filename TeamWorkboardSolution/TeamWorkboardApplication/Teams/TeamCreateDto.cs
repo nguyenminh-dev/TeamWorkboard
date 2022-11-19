@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TeamWorkboardApplication.Users
+namespace TeamWorkboardApplication.Teams
 {
-    internal class IUserService
+    public class TeamCreateDto
     {
+        public string Name { get; set; }
     }
 }

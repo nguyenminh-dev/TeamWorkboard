@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TeamWorkboardData.Teams;
+using TeamWorkboardData.TeamUsers;
 using TeamWorkboardData.Users;
 
 namespace TeamWorkboardData.Models
@@ -15,6 +17,7 @@ namespace TeamWorkboardData.Models
         {
 
         }
-       
+        public DbSet<Team> Teams { get; set; }
+        public DbSet<TeamUser> TeamUsers{ get; set; }
     }
 }
