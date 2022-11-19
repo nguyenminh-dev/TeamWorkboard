@@ -26,11 +26,11 @@ namespace TeamWorkboardAPI.Controllers
             return result;
         }
 
-        [HttpGet("token")]
-        [Authorize]
-        public async Task<string> TestAsync()
+        [HttpPost("sign-up")]
+        public async Task<IdentityResult> SignUppAsync([FromBody] SignUpDto model)
         {
-            return "Success";
+            var result = await _authenticationService.SignUpAsync(model);
+            return result;
         }
     }
 }
