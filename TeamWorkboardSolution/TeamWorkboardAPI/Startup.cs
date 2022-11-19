@@ -6,13 +6,10 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json.Serialization;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using TeamWorkboardData.Users;
 using TeamWorkboardApplication.Options;
@@ -125,7 +122,6 @@ namespace TeamWorkboardAPI
 
             app.UseAuthentication();
             app.UseAuthorization();
-            SeedDatabase.Initialize(app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope().ServiceProvider);
 
             app.UseEndpoints(endpoints =>
             {
