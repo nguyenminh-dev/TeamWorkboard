@@ -13,9 +13,11 @@ namespace TeamWorkboardData.TeamUsers
         public string UserId { get; set; }
         public string TeamId { get; set; }
 
-        public TeamUser()
+        public TeamUser(string userId, string teamId)
         {
             Id = Guid.NewGuid().ToString();
+            UserId = userId;
+            TeamId = teamId;
         }
     }
 }

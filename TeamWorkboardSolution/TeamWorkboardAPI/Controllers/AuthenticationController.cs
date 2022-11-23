@@ -1,16 +1,13 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
 using System.Threading.Tasks;
 using TeamWorkboardApplication.Authentications;
-using TeamWorkboardData.Users;
 
 namespace TeamWorkboardAPI.Controllers
 {
     [Route("api/v1/authentication")]
     [IgnoreAntiforgeryToken]
-    public class AuthenticationController : ControllerBase
+    public class AuthenticationController : TeamWorkboardController
     {
         private readonly IAuthenticationService _authenticationService;
 

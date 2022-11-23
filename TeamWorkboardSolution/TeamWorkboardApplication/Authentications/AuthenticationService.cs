@@ -38,7 +38,7 @@ namespace TeamWorkboardApplication.Authentications
                 var authClaim = new List<Claim>
                         {
                             new Claim(ClaimTypes.Name,user.UserName),
-                            new Claim(JwtRegisteredClaimNames.Jti,Guid.NewGuid().ToString()),
+                            new Claim(JwtRegisteredClaimNames.Jti,user.Id)
                         };
                 foreach (var userRole in userRoles)
                 {
