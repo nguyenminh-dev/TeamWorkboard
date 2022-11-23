@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using TeamWorkboardApplication.Teams;
 using TeamWorkboardApplication.Users;
 
-namespace TeamWorkboardAPI.Controllers
+namespace TeamWorkboardAPI.Controllers.v1
 {
     [Route("api/v1/user")]
     [IgnoreAntiforgeryToken]
@@ -19,6 +19,7 @@ namespace TeamWorkboardAPI.Controllers
         }
 
         [HttpPost("getlist")]
+        [Authorize]
         public async Task<List<UserDto>> GetList()
         {
             var result = await _userService.GetListAsync();

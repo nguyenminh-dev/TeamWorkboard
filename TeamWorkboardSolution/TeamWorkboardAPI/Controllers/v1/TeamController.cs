@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using TeamWorkboardApplication.Teams;
 
-namespace TeamWorkboardAPI.Controllers
+namespace TeamWorkboardAPI.Controllers.v1
 {
     [Route("api/v1/team")]
     [IgnoreAntiforgeryToken]
@@ -21,7 +21,7 @@ namespace TeamWorkboardAPI.Controllers
 
         [HttpPost("create")]
         [Authorize]
-        public async Task<TeamDto> CreateAsync([FromBody]TeamCreateDto input)
+        public async Task<TeamDto> CreateAsync([FromBody] TeamCreateDto input)
         {
             var creatorId = await GetIdUser();
             var result = await _teamService.CreateAsync(input, creatorId);
@@ -37,7 +37,7 @@ namespace TeamWorkboardAPI.Controllers
 
         [HttpPost("infomation/{id}")]
         [Authorize]
-        public async Task<TeamInfomationDto> GetInfomationAsync([FromRoute]string id)
+        public async Task<TeamInfomationDto> GetInfomationAsync([FromRoute] string id)
         {
             var result = await _teamService.GetInfomationAsync(id);
             return result;
