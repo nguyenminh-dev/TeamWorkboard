@@ -14,6 +14,10 @@ using System.Text;
 using TeamWorkboardData.Users;
 using TeamWorkboardApplication.Options;
 using TeamWorkboardApplication.Authentications;
+using TeamWorkboardApplication.Teams;
+using TeamWorkboardData.Teams;
+using TeamWorkboardData.TeamUsers;
+using TeamWorkboardApplication.Users;
 
 namespace TeamWorkboardAPI
 {
@@ -58,7 +62,6 @@ namespace TeamWorkboardAPI
                 };
 
             });
-            services.AddTransient<IAuthenticationService, AuthenticationService>();
 
             services.AddCors();
 
@@ -99,9 +102,17 @@ namespace TeamWorkboardAPI
                 options.SwaggerDoc("v1", new OpenApiInfo { Title = "TeamWorkboard Api", Version= "v1"});
                 options.DocInclusionPredicate((docName, description) => true);
             });
+
+            services.AddTransient<IAuthenticationService, AuthenticationService>();
+            services.AddTransient<ITeamService, TeamService>();
+            services.AddTransient<ITeamRepository, TeamRepository>();
+            services.AddTransient<ITeamUserRepository, TeamUserRepository>();
+            services.AddTransient<IAppUserRepository, AppUserRepository>();
+            services.AddTransient<IUserService, UserService>();
+
         }
 
-        
+
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {

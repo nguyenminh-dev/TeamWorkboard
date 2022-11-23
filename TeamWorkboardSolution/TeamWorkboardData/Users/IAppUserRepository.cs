@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace TeamWorkboardData.Users
 {
-    public interface IUserRepository
+    public interface IAppUserRepository
     {
+        Task<List<AppUser>> GetByIdsAsync(List<string> ids);
+        Task<List<AppUser>> GetListAsync();
     }
 }

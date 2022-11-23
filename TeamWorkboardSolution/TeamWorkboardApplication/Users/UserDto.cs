@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace TeamWorkboardApplication.Users
 {
-    public interface IUserService
+    public class UserDto
     {
-        Task<List<UserDto>> GetListAsync();
+        public string Id { get; set; }
+        public string UserName { get; set; }
+        public string PhoneNumber { get; set; }
     }
 }

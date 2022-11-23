@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TeamWorkboardData.Models;
 
 namespace TeamWorkboardData.Migrations
 {
     [DbContext(typeof(TeamWorkboardDbContext))]
-    partial class TeamWorkboardDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221123024024_add_team")]
+    partial class add_team
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
