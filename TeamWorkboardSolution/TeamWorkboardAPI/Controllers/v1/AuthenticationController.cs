@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using TeamWorkboardApplication.Authentications;
 
-namespace TeamWorkboardAPI.Controllers
+namespace TeamWorkboardAPI.Controllers.v1
 {
     [Route("api/v1/authentication")]
     [IgnoreAntiforgeryToken]
