@@ -19,6 +19,7 @@ using TeamWorkboardData.Teams;
 using TeamWorkboardData.TeamUsers;
 using TeamWorkboardApplication.Users;
 using System;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace TeamWorkboardAPI
 {
@@ -38,7 +39,7 @@ namespace TeamWorkboardAPI
 
             //EntityFramework
             //services.AddDbContext<TeamWorkboardDbContext>(option => option.UseSqlServer(Configuration.GetConnectionString("Connected")));
-            services.AddDbContext<TeamWorkboardDbContext>(x =>
+            services.AddDbContext<IdentityDbContext<AppUser>>(x =>
             {
                 var env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
                 string connStr;
@@ -140,7 +141,6 @@ namespace TeamWorkboardAPI
             services.AddTransient<ITeamUserRepository, TeamUserRepository>();
             services.AddTransient<IAppUserRepository, AppUserRepository>();
             services.AddTransient<IUserService, UserService>();
-            
         }
 
 
