@@ -63,7 +63,7 @@ namespace TeamWorkboardAPI
                     var connDb = hostSide.Split("/")[1].Split("?")[0];
 
 
-                    connStr = $"server={connHost};Uid={connUser};Pwd={connPass};Database={connDb}";
+                    connStr = $"Server={connHost};Uid={connUser};Pwd={connPass};Database={connDb}";
                 }
 
                 x.UseSqlServer(connStr);
