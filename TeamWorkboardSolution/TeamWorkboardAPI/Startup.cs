@@ -18,6 +18,7 @@ using TeamWorkboardApplication.Teams;
 using TeamWorkboardData.Teams;
 using TeamWorkboardData.TeamUsers;
 using TeamWorkboardApplication.Users;
+using System;
 
 namespace TeamWorkboardAPI
 {
@@ -34,9 +35,40 @@ namespace TeamWorkboardAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            
+
             //EntityFramework
-            services.AddDbContext<TeamWorkboardDbContext>(option => option.UseSqlServer(Configuration.GetConnectionString("Connected")));
+            //services.AddDbContext<TeamWorkboardDbContext>(option => option.UseSqlServer(Configuration.GetConnectionString("Connected")));
+            services.AddDbContext<TeamWorkboardDbContext>(x =>
+            {
+
+                var env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+                string connStr;
+
+                if (env == "Development")
+                {
+                    connStr = Configuration.GetConnectionString("Connected");
+                }
+                else
+                {
+                    // Use connection string provided at runtime by Heroku.
+                    var connUrl = Environment.GetEnvironmentVariable("CLEARDB_DATABASE_URL");
+
+                    connUrl = connUrl.Replace("mysql://", string.Empty);
+                    var userPassSide = connUrl.Split("@")[0];
+                    var hostSide = connUrl.Split("@")[1];
+
+                    var connUser = userPassSide.Split(":")[0];
+                    var connPass = userPassSide.Split(":")[1];
+                    var connHost = hostSide.Split("/")[0];
+                    var connDb = hostSide.Split("/")[1].Split("?")[0];
+
+
+                    connStr = $"server={connHost};Uid={connUser};Pwd={connPass};Database={connDb}";
+                }
+
+                x.UseSqlServer(connStr);
+
+            });
             //For Identity
             services.AddIdentity<AppUser, IdentityRole>()
                 .AddEntityFrameworkStores<TeamWorkboardDbContext>()
@@ -109,7 +141,7 @@ namespace TeamWorkboardAPI
             services.AddTransient<ITeamUserRepository, TeamUserRepository>();
             services.AddTransient<IAppUserRepository, AppUserRepository>();
             services.AddTransient<IUserService, UserService>();
-
+            
         }
 
 
