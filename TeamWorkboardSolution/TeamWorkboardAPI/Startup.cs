@@ -39,7 +39,7 @@ namespace TeamWorkboardAPI
 
             //EntityFramework
             //services.AddDbContext<TeamWorkboardDbContext>(option => option.UseSqlServer(Configuration.GetConnectionString("Connected")));
-            services.AddDbContext<IdentityDbContext<AppUser>>(x =>
+            services.AddDbContext<TeamWorkboardDbContext>(x =>
             {
                 var env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
                 string connStr;
@@ -51,7 +51,7 @@ namespace TeamWorkboardAPI
                 else
                 {
                     // Use connection string provided at runtime by Heroku.
-                    var connUrl = Environment.GetEnvironmentVariable("CLEARDB_DATABASE_URL");
+                    var connUrl = Environment.GetEnvironmentVariable("JAWSDB_URL");
                     connStr = $"\"Server=cwe1u6tjijexv3r6.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306;Uid=pb4uh3jbk86s8fla;Pwd=aoseznri4qxnnknf;Database=detlxbz625ztquy9\"";
                 }
                 x.UseSqlServer(connStr);
