@@ -13,7 +13,7 @@ namespace TeamWorkboardData.Models
         public TeamWorkboardDbContext CreateDbContext(string[] args)
         {
             var optionsBuilder = new DbContextOptionsBuilder<TeamWorkboardDbContext>();
-            optionsBuilder.UseSqlServer("Server=cwe1u6tjijexv3r6.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306;Uid=pb4uh3jbk86s8fla;Pwd=aoseznri4qxnnknf;Database=detlxbz625ztquy9");
+            optionsBuilder.UseSqlServer("Server=(local);Database=TeamWorkboard;Trusted_Connection=True;");
             return new TeamWorkboardDbContext(optionsBuilder.Options);
         }
     }
