@@ -38,7 +38,7 @@ namespace TeamWorkboardAPI
 
             //EntityFramework
             //services.AddDbContext<TeamWorkboardDbContext>(option => option.UseSqlServer(Configuration.GetConnectionString("Connected")));
-            services.AddDbContext<DbContext>(x =>
+            services.AddDbContext<TeamWorkboardDbContext>(x =>
             {
 
                 var env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
