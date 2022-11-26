@@ -13,17 +13,7 @@ namespace TeamWorkboardData.Models
         public TeamWorkboardDbContext CreateDbContext(string[] args)
         {
             var optionsBuilder = new DbContextOptionsBuilder<TeamWorkboardDbContext>();
-            var connUrl = "mysql://bc0dd1ac8759d4:970074ec@us-cdbr-east-06.cleardb.net/heroku_a2abb582c1ac05b?reconnect=true";
-            connUrl = connUrl.Replace("mysql://", string.Empty);
-            var userPassSide = connUrl.Split("@")[0];
-            var hostSide = connUrl.Split("@")[1];
-
-            var connUser = userPassSide.Split(":")[0];
-            var connPass = userPassSide.Split(":")[1];
-            var connHost = hostSide.Split("/")[0];
-            var connDb = hostSide.Split("/")[1].Split("?")[0];
-            var connStr = $"Server={connHost};Uid={connUser};Pwd={connPass};Database={connDb}";
-            optionsBuilder.UseSqlServer(connStr);
+            optionsBuilder.UseSqlServer("Server=cwe1u6tjijexv3r6.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306;Uid=pb4uh3jbk86s8fla;Pwd=aoseznri4qxnnknf;Database=detlxbz625ztquy9");
             return new TeamWorkboardDbContext(optionsBuilder.Options);
         }
     }

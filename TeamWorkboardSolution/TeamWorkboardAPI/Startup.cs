@@ -52,20 +52,8 @@ namespace TeamWorkboardAPI
                 {
                     // Use connection string provided at runtime by Heroku.
                     var connUrl = Environment.GetEnvironmentVariable("CLEARDB_DATABASE_URL");
-
-                    connUrl = connUrl.Replace("mysql://", string.Empty);
-                    var userPassSide = connUrl.Split("@")[0];
-                    var hostSide = connUrl.Split("@")[1];
-
-                    var connUser = userPassSide.Split(":")[0];
-                    var connPass = userPassSide.Split(":")[1];
-                    var connHost = hostSide.Split("/")[0];
-                    var connDb = hostSide.Split("/")[1].Split("?")[0];
-
-
-                    connStr = $"Server={connHost};Uid={connUser};Pwd={connPass};Database={connDb}";
+                    connStr = $"\"Server=cwe1u6tjijexv3r6.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306;Uid=pb4uh3jbk86s8fla;Pwd=aoseznri4qxnnknf;Database=detlxbz625ztquy9\"";
                 }
-
                 x.UseSqlServer(connStr);
 
             });
